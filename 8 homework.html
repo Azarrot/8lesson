@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Homework 8</title>
+<style>
+div
+{
+text-align: center;
+border-radius: 10px;
+background: Gainsboro;
+}
+.type
+{
+border: 1px solid gray;
+width: 400px;
+height: 300px;
+}
+.msheet
+{
+border: 1px solid gray;
+width: 400px;
+height: 300px;
+}
+
+</style>
+<script>
+//add to Git 123
+   var $keydown=0;
+   var $keyup=0;
+   var $keypress=0;
+   var $change=0;
+   var $focus=0;
+   var $blur=0;
+   
+   function ShowAll()
+   {
+    document.getElementById('divinf').innerHTML='keydown: '+$keydown+'<br>' +
+                                              'keyup: '+$keyup+'<br>' +
+                                              'keypress: '+$keypress+'<br><hr>' +
+                                              'change: '+$change+'<br>' + 
+                                              'focus: '+$focus+'<br>' + 
+                                              'blur: '+$blur+'<br>';
+
+   }
+  function my_keydown() {$keydown++;ShowAll();}
+  function my_keyup() {$keyup++;ShowAll();}
+  function my_change() {$change++;ShowAll();}
+  function my_focus() {$focus++;ShowAll();}
+  function my_blur() {$blur++;ShowAll();}
+  function my_keypress($event) 
+		{
+		$keypress++;
+		var x = ($event.keyCode || $event.which);
+		var x_char = String.fromCharCode(x);
+		var alltext = document.getElementById("sheet").innerHTML;
+		if (x_char=="a") {x_char="A";}
+		document.getElementById("sheet").innerHTML=alltext+x_char;
+		ShowAll();
+		}
+</script>
+</head>
+
+
+<body>
+	<div class="type"><br>
+				<textarea cols=40 rows=6 class="ttext"
+							onKeyDown="my_keydown();"              
+							onKeyUp="my_keyup();"              
+							onKeyPress="my_keypress(event);"
+							onChange="my_change();"
+							onFocus="my_focus();"
+							onBlur="my_blur();"
+				></textarea>
+		<div id="divinf">
+		keydown: 0 <br>
+		keyup: 0<br>
+		keypress: 0
+		<hr>
+		change: 0 <br>
+		focus: 0<br>
+		blur: 0<br>
+		
+		
+		
+		</div>
+	</div>
+<br>
+	<div id="sheet" class="msheet">
+	</div>
+
+</body>
+</html>
